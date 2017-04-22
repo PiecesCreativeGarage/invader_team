@@ -3,8 +3,6 @@ using System.Collections;
 
 public class enemy_01 : MonoBehaviour {
 	public int speed = -6;
-	public int strength = 0;
-	private int count = 0;
 
 	// 爆発のPrefab
 	public GameObject explosion;
@@ -28,21 +26,18 @@ public class enemy_01 : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D c)
 	{
-		count++;
-
-		// 弾の削除
-		Destroy(c.gameObject);
-
-		if (strength <= count)
-		{
-			// レイヤー名を取得
-			string layerName = LayerMask.LayerToName(c.gameObject.layer);
+		// レイヤー名を取得
+		string layerName = LayerMask.LayerToName(c.gameObject.layer);
+		if (layerName == "Weapon") {
+			// 弾の削除
+			Destroy (c.gameObject);
 
 			//爆発
 			Explosion ();
 
+
 			// エネミーの削除
-			Destroy(gameObject);
+			Destroy (gameObject);
 		}
 	}
 }

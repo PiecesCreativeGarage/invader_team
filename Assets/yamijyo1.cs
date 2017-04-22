@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class yamijyo1 : MonoBehaviour {
-
+	public int strength = 0;
+	private int count = 0;
     public float speed = 15;	
 
 	// PlayerBulletプレハブ
@@ -27,23 +28,25 @@ public class yamijyo1 : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1")) {
 			Instantiate(bullet, transform.position, transform.rotation);
 		}
-
 	}
-
-
+		
 	void OnTriggerEnter2D (Collider2D c)
 	{
 		// レイヤー名を取得
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
-
-
 		if( layerName == "Enemy")
 		{
-			//爆発
-			Explosion();
-			// 弾の削除
+			count++;
+			// エネミーの削除
 			Destroy(c.gameObject);
+
+			if( strength <= count )
+			{
+				//爆発
+				Explosion();
+				// 弾の削除
+				Destroy(gameObject);
+			}
 		}
 	}
-    
 }
