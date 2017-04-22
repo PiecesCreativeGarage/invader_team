@@ -12,7 +12,7 @@ public class Emitter : MonoBehaviour {
 		while ( waveIndex <= waves.Length ) {
 			GameObject wave = (GameObject)GameObject.Instantiate (waves [waveIndex]);
 
-			yield return null;
+			yield break;
 		}
 	}
 }

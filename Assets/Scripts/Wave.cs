@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour {
 
-	GameObject[] enemies;
+	EnemyBase[] enemies;
+
+	int left_enemies;
+	int score;
 
 	void Awake()
 	{
-		this.enemies = this.gameObject.GetComponents<GameObject> ();
+		this.enemies = this.gameObject.GetComponentsInChildren<EnemyBase> ();
+		this.left_enemies = this.enemies.Length;
+		foreach (var e in enemies) {
+			e.onDead += this.OnEnemyDead;
+		}
 	}
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnEnemyDead(int score)
+	{
+		this.score += score;
+		left_enemies--;
+
+		if (left_enemies == 0) {
+			Debug.Log ("全滅しました");
+		}
 	}
 }

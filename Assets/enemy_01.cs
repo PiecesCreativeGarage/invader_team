@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class enemy_01 : MonoBehaviour {
+public class enemy_01 : EnemyBase {
 	public int speed = -6;
 
 	// 爆発のPrefab
