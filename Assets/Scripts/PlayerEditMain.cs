@@ -7,21 +7,25 @@ using UnityEngine.Events;
 public class PlayerEditMain : MonoBehaviour {
 
 	public Image selectedCharacter;
-	public Sprite[] characters;
 	public Button[] colors;
-
+	public new Text name;
+	public Text explain;
 
 	int chara_index;
-
+	DataTableCharacter[] chara_datas;
 
 	// Use this for initialization
 	void Start () {
+
+		chara_datas = Resources.LoadAll<DataTableCharacter>("CharacterData");
 
 		foreach (var item in colors) {
 			item.onClick.AddListener (() => {
 				selectedCharacter.color = item.colors.normalColor;
 			});
 		}
+
+		ApplyCharacter();
 	}
 
 	public void LoadScene(string scene_name)
@@ -35,26 +39,29 @@ public class PlayerEditMain : MonoBehaviour {
 	public void SelectLeft()
 	{
 		this.chara_index++;
-		if (this.characters.Length <= this.chara_index) {
+		if (this.chara_datas.Length <= this.chara_index) {
 			this.chara_index = 0;
 		}
-		ApplySprite ();
+		ApplyCharacter ();
 	}
 
 	public void SelectRight()
 	{
 		this.chara_index--;
 		if (this.chara_index < 0) {
-			this.chara_index = this.characters.Length - 1;
+			this.chara_index = this.chara_datas.Length - 1;
 		}
-		ApplySprite ();
+		ApplyCharacter ();
 	}
 
 	/// <summary>
 	/// キャラ絵を適用する
 	/// </summary>
-	void ApplySprite()
+	void ApplyCharacter()
 	{
-		this.selectedCharacter.sprite = this.characters [this.chara_index];
+		DataTableCharacter data = this.chara_datas[this.chara_index];
+		this.selectedCharacter.sprite = data.sprite;
+		this.name.text = data.name;
+		this.explain.text = data.explain;
 	}
 }

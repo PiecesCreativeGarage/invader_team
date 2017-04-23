@@ -37,7 +37,7 @@ public class enemy_01 : EnemyBase {
 
 
 			// エネミーの削除
-			Destroy (gameObject);
+			Dead ();
 		}
 	}
 }

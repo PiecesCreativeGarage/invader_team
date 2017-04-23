@@ -14,17 +14,22 @@ public class Wave : MonoBehaviour {
 		this.enemies = this.gameObject.GetComponentsInChildren<EnemyBase> ();
 		this.left_enemies = this.enemies.Length;
 		foreach (var e in enemies) {
-			e.onDead += this.OnEnemyDead;
+			e.onDestroied += this.OnEnemyDestroied;
 		}
 	}
 
-	void OnEnemyDead(int score)
-	{
-		this.score += score;
-		left_enemies--;
+	/// <summary>
+	/// 敵が
+	/// </summary>
+	void OnEnemyDestroied(int score, bool is_dead) {
 
+		if (is_dead) {
+			this.score += score;
+		}
+
+		left_enemies--;
 		if (left_enemies == 0) {
-			Debug.Log ("全滅しました");
+			Debug.Log("全滅しました");
 		}
 	}
 }
