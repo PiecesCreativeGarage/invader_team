@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour {
 
+	/// <summary>
+	/// このWaveが終了したか
+	/// </summary>
+	public bool IsDestroied {
+		get;
+		private set;
+	}
+
 	EnemyBase[] enemies;
 
 	int left_enemies;
@@ -11,10 +19,16 @@ public class Wave : MonoBehaviour {
 
 	void Awake()
 	{
+		IsDestroied = false;
+
 		this.enemies = this.gameObject.GetComponentsInChildren<EnemyBase> ();
 		this.left_enemies = this.enemies.Length;
 		foreach (var e in enemies) {
 			e.onDestroied += this.OnEnemyDestroied;
+		}
+
+		if(this.left_enemies == 0) {
+			IsDestroied = true;
 		}
 	}
 
@@ -29,7 +43,7 @@ public class Wave : MonoBehaviour {
 
 		left_enemies--;
 		if (left_enemies == 0) {
-			Debug.Log("全滅しました");
+			IsDestroied = true;
 		}
 	}
 }

@@ -12,6 +12,14 @@ public class yamijyo1 : MonoBehaviour {
 	// 爆発のPrefab
 	public GameObject explosion;
 
+	// Use this for initialization
+	void Awake() {
+		if (PlayerStatus.instance.sprite != null) {
+			this.GetComponent<SpriteRenderer>().sprite = PlayerStatus.instance.sprite;
+			this.GetComponent<SpriteRenderer>().color = PlayerStatus.instance.color;
+		}
+	}
+
 	// 爆発の作成
 	public void Explosion ()
 	{
