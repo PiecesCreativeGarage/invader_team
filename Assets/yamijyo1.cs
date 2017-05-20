@@ -44,11 +44,11 @@ public class yamijyo1 : MonoBehaviour {
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
 		if( layerName == "Enemy")
 		{
-			count++;
+			strength--;
 			// エネミーの削除
 			Destroy(c.gameObject);
 
-			if( strength <= count )
+			if( strength == 0 )
 			{
 				//爆発
 				Explosion();

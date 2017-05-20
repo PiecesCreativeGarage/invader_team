@@ -8,12 +8,16 @@ public class Emitter : MonoBehaviour {
 
 	public Object[] waves;		// 出現させるWaveたち
 	int waveIndex;				// 現在のWave番号
+	public Score score;
 
 	IEnumerator Start () {
 		while ( waveIndex < waves.Length ) {
 			// Waveを生成する
 			GameObject go_wave = (GameObject)GameObject.Instantiate (waves [waveIndex]);
 			Wave wave = go_wave.GetComponent<Wave>();
+			wave.onenemydead += (int score) => {
+				this.score.AddScore (score);
+			};
 			while (!wave.IsDestroied) {
 				// Waveの敵全滅待ち
 				yield return null;
