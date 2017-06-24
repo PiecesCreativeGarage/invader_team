@@ -13,7 +13,9 @@ public abstract class EnemyBase : MonoBehaviour {
 	/// Destroyが呼ばれた時に実行される
 	/// </summary>
 	void OnDestroy() {
-		onDestroied(score, isDead);
+		if (onDestroied != null) {
+			onDestroied (score, isDead);
+		}
 	}
 
 	/// <summary>
