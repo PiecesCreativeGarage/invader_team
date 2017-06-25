@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class enemy_boss : EnemyBase {
 
-	public int life = 5;
+	const float MAX_SPEED = 6;
 
-	public int speed = 6;
+	public int life = 5;
+	public float speed = 6;
 
 	// 爆発のPrefab
 	public GameObject explosion;
@@ -15,7 +16,7 @@ public class enemy_boss : EnemyBase {
 
 	bool isMoving = true;
 	float updownMoveRange = 5;
-	float moveVec = 1;
+	float moveDir = 1;
 
 	// 爆発の作成
 	public void Explosion ()
@@ -35,29 +36,35 @@ public class enemy_boss : EnemyBase {
 			}
 		} else {
 			Vector3 pos = transform.position;
-			float dir = Mathf.Sin (moveVec);
-			float max = updownMoveRange * dir;
+			float max = updownMoveRange * moveDir;
+			pos.y = Mathf.SmoothDamp(pos.y, max, ref speed, 0.5f, MAX_SPEED);
+			transform.position = pos;
+			if (Mathf.Abs(max) - Mathf.Abs(pos.y) <= 0.5f) {
+				speed = 0;
+				moveDir *= -1;
+			}
 		}
 	}
 
 	void OnTriggerEnter2D (Collider2D c)
 	{
-		life--;
-		if (0 < life) {
-			return;
-		}
-
 		// レイヤー名を取得
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
+		// 弾の削除
 		if (layerName == "Weapon") {
-			// 弾の削除
-			Destroy (c.gameObject);
+			Destroy(c.gameObject);
 
-			//爆発
-			Explosion ();
+			life--;
+			if (0 < life) {
+				return;
+			}
+			else {
+				//爆発
+				Explosion();
 
-			// エネミーの削除
-			Dead ();
+				// エネミーの削除
+				Dead();
+			}
 		}
 	}
 }
