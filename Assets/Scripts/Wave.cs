@@ -16,7 +16,7 @@ public class Wave : MonoBehaviour {
 
 	int left_enemies;
 	int score;
-
+	public event System.Action<int> onenemydead;
 	void Awake()
 	{
 		IsDestroied = false;
@@ -25,6 +25,7 @@ public class Wave : MonoBehaviour {
 		this.left_enemies = this.enemies.Length;
 		foreach (var e in enemies) {
 			e.onDestroied += this.OnEnemyDestroied;
+			e.onDead += OnEnemyDead;
 		}
 
 		if(this.left_enemies == 0) {
@@ -45,5 +46,12 @@ public class Wave : MonoBehaviour {
 		if (left_enemies == 0) {
 			IsDestroied = true;
 		}
+	}
+
+	void OnEnemyDead(int score){
+		if (onenemydead != null) {
+			onenemydead (score);
+		}
+	
 	}
 }

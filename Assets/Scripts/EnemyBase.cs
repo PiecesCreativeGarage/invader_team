@@ -5,14 +5,17 @@ using UnityEngine;
 public abstract class EnemyBase : MonoBehaviour {
 
 	public event System.Action<int, bool> onDestroied;		// この敵が消滅したことを知りたいプログラムへのコールバック
-	int score;				// この敵が持つスコア
+	public event System.Action<int> onDead;
+	int score = 50;				// この敵が持つスコア
 	bool isDead = false;	// プレイヤーによって倒されたか
 
 	/// <summary>
 	/// Destroyが呼ばれた時に実行される
 	/// </summary>
 	void OnDestroy() {
-		onDestroied(score, isDead);
+		if (onDestroied != null) {
+			onDestroied (score, isDead);
+		}
 	}
 
 	/// <summary>
@@ -20,6 +23,8 @@ public abstract class EnemyBase : MonoBehaviour {
 	/// </summary>
 	protected virtual void Dead()
 	{
+		if (onDead != null)
+			onDead (score);
 		isDead = true;
 		Destroy(gameObject);
 	}
