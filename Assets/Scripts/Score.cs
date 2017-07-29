@@ -22,5 +22,9 @@ public class Score : MonoBehaviour {
 		this.score.text = "Score " + totalscore;
 	}
 
+	public int getScore(){
+		return totalscore;
+	}
+
 }
 

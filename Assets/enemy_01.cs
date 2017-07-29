@@ -11,8 +11,9 @@ public class enemy_01 : EnemyBase {
 	public void Explosion ()
 	{
 		Instantiate (explosion, transform.position, transform.rotation);
+		Object prefab = Resources.Load ("deadSe");
+		Instantiate (prefab);
 	}
-
 	// Use this for initialization
 	void Start () {
 		

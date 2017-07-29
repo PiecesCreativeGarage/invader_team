@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: "Assets/Scenes/\u75C5\u5973.unity"
   - enabled: 1
     path: Assets/Scenes/PlayerEdit.unity
+  - enabled: 1
+    path: "Assets/Scenes/\u75C5\u59732.unity"
