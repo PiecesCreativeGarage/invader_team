@@ -19,9 +19,8 @@ public class StageClear : MonoBehaviour {
 		};
 
 		if (Next != null) {
-			Next.onClick.AddListener 
-	   (() => {
-				UnityEngine.SceneManagement.SceneManager.LoadScene ("病女2");
+			Next.onClick.AddListener (() => {
+				StageManager.GoNextStage();
 			});
 		}
 	}

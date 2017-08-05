@@ -15,8 +15,10 @@ public class enemy_boss : EnemyBase {
 	public float stopline;
 
 	bool isMoving = true;
-	float updownMoveRange = 5;
-	float moveDir = 1;
+	float updownMoveRange = 3;
+
+	float baseYpos;
+	float elapsedTime = 0;
 
 	// 爆発の作成
 	public void Explosion ()
@@ -24,25 +26,21 @@ public class enemy_boss : EnemyBase {
 		Instantiate (explosion, transform.position, transform.rotation);
 	}
 
-	// Use this for initialization
-	void Start () {
-	}
-
 	void Update(){
 		if (isMoving) {
 			transform.position += Vector3.left * speed * Time.deltaTime;
 			if (this.transform.position.x < stopline) {
 				isMoving = false;
+				baseYpos = transform.position.y;
 			}
 		} else {
+			float move = Mathf.Sin(elapsedTime) * updownMoveRange;
+			elapsedTime += Time.deltaTime;
+
+			float y = move + baseYpos;
 			Vector3 pos = transform.position;
-			float max = updownMoveRange * moveDir;
-			pos.y = Mathf.SmoothDamp(pos.y, max, ref speed, 0.5f, MAX_SPEED);
+			pos.y = y;
 			transform.position = pos;
-			if (Mathf.Abs(max) - Mathf.Abs(pos.y) <= 0.5f) {
-				speed = 0;
-				moveDir *= -1;
-			}
 		}
 	}
 
