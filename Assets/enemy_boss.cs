@@ -14,6 +14,10 @@ public class enemy_boss : EnemyBase {
 
 	public float stopline;
 
+	public GameObject bullet;
+
+	public AudioSource shotvoice;
+
 	bool isMoving = true;
 	float updownMoveRange = 3;
 
@@ -27,11 +31,17 @@ public class enemy_boss : EnemyBase {
 	}
 
 	void Update(){
+
+		if (!PlayerAlive) {
+			return;
+		}
+
 		if (isMoving) {
 			transform.position += Vector3.left * speed * Time.deltaTime;
 			if (this.transform.position.x < stopline) {
 				isMoving = false;
 				baseYpos = transform.position.y;
+				StartCoroutine (fire ());
 			}
 		} else {
 			float move = Mathf.Sin(elapsedTime) * updownMoveRange;
@@ -41,8 +51,27 @@ public class enemy_boss : EnemyBase {
 			Vector3 pos = transform.position;
 			pos.y = y;
 			transform.position = pos;
+
+
 		}
 	}
+
+	IEnumerator fire(){
+
+
+		while (true) {
+			yield return new WaitForSeconds (0.5f);
+			Debug.Log ("このタイミングでうつ");
+			shotvoice.Play ();
+
+			GameObject aaa = GameObject.Instantiate (bullet);
+			aaa.transform.position = transform.position;
+			Rigidbody2D bbb = aaa.GetComponent<Rigidbody2D> ();
+			bbb.AddForce (Vector2.left*1000);
+		}
+
+	}
+
 
 	void OnTriggerEnter2D (Collider2D c)
 	{

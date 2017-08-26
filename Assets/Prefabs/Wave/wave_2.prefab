@@ -2099,7 +2099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114053461614473252
 MonoBehaviour:
@@ -2112,7 +2112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114349322021091218
 MonoBehaviour:
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114544821289509484
 MonoBehaviour:
@@ -2138,7 +2138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114601215462084380
 MonoBehaviour:
@@ -2151,7 +2151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114742787255675550
 MonoBehaviour:
@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114948706973875222
 MonoBehaviour:
@@ -2188,7 +2188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!114 &114995491911654264
 MonoBehaviour:
@@ -2201,7 +2201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7034968d5e14a66449fb5bf5659fc70a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -6
+  speed: 0.3
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
 --- !u!212 &212020760634451142
 SpriteRenderer:

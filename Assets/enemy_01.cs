@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class enemy_01 : EnemyBase {
-	public int speed = -6;
+	public float speed = 0;
 
 	// 爆発のPrefab
 	public GameObject explosion;
@@ -14,15 +14,12 @@ public class enemy_01 : EnemyBase {
 		Object prefab = Resources.Load ("deadSe");
 		Instantiate (prefab);
 	}
-	// Use this for initialization
-	void Start () {
-		
-		GetComponent<Rigidbody2D>().velocity = transform.right.normalized * speed;
-	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
+		if (PlayerAlive) {
+			transform.position += -transform.right.normalized * speed;
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D c)

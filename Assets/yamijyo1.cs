@@ -12,8 +12,12 @@ public class yamijyo1 : MonoBehaviour {
 	// 爆発のPrefab
 	public GameObject explosion;
 
+	public GameObject gameover;
+
 	// Use this for initialization
 	void Awake() {
+		EnemyBase.PlayerAlive = true;
+
 		if (PlayerStatus.instance.sprite != null) {
 			this.GetComponent<SpriteRenderer>().sprite = PlayerStatus.instance.sprite;
 			this.GetComponent<SpriteRenderer>().color = PlayerStatus.instance.color;
@@ -50,10 +54,13 @@ public class yamijyo1 : MonoBehaviour {
 
 			if( strength == 0 )
 			{
+				EnemyBase.PlayerAlive = false;
+
 				//爆発
 				Explosion();
 				// 弾の削除
 				Destroy(gameObject);
+				gameover.SetActive (true);
 			}
 		}
 	}

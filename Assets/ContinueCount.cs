@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ContinueCount : MonoBehaviour {
 
-	public int Count=3;
+	public static int Count=3;
 	public HorizontalLayoutGroup layout;
 	public GameObject orgImage;
 	GameObject[] lifeObjects;

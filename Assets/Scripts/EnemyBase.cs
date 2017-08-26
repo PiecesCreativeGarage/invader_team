@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour {
 
+	public static bool PlayerAlive = true;
+
 	public event System.Action<int, bool> onDestroied;		// この敵が消滅したことを知りたいプログラムへのコールバック
 	public event System.Action<int> onDead;
 	int score = 50;				// この敵が持つスコア
