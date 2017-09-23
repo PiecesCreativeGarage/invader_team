@@ -9,8 +9,26 @@ public class Background : MonoBehaviour {
 	// スクロールするスピード
 	public float speed = 0.1f;
 
+	public static Background Instance {
+		get { return s_instance; }
+	}
+	static Background s_instance;
+
+	public SpriteRenderer Sprite {
+		get;
+		private set;
+	}
+
+	void Awake()
+	{
+		s_instance = this;
+		Sprite = gameObject.GetComponentInChildren<SpriteRenderer> ();
+	}
+
 	void Update ()
 	{
+		enabled = false;	// FIXME:スクロール機能入れるならこの行を消す
+
 		// 時間によってxの値が0から1に変化していく。1になったら0に戻り、繰り返す。
 		float x = Mathf.Repeat (Time.time * speed, 1);
 
