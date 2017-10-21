@@ -18,9 +18,11 @@ public class StageManager : MonoBehaviour {
 	public static int CurrentStage = 0;
 
 	void Awake() {
-		StageDef s = stage[CurrentStage];
-		bg.sprite = s.bg;
-		stageNameText.text = s.stageName;
+		if (stage.Length < CurrentStage - 1) {
+			StageDef s = stage[CurrentStage];
+			bg.sprite = s.bg;
+			stageNameText.text = s.stageName;
+		}
 	}
 
 	public static void GoNextStage() {

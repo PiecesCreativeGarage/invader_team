@@ -1,16 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class yamijyo1 : MonoBehaviour {
-	public int strength = 0;
-	private int count = 0;
-    public float speed = 15;	
-
-	// PlayerBulletプレハブ
-	public GameObject bullet;
-
-	// 爆発のPrefab
-	public GameObject explosion;
+public class yamijyo1 : PlayerBase {
 
 	public GameObject gameover;
 
@@ -24,12 +15,6 @@ public class yamijyo1 : MonoBehaviour {
 		}
 	}
 
-	// 爆発の作成
-	public void Explosion ()
-	{
-		Instantiate (explosion, transform.position, transform.rotation);
-	}
-
 	// Update is called once per frame
 	void Update () {
         float x = Input.GetAxisRaw("Horizontal");
@@ -38,30 +23,19 @@ public class yamijyo1 : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = direction * speed;
 
 		if (Input.GetButtonDown("Fire1")) {
-			Instantiate(bullet, transform.position, transform.rotation);
+			Fire (bullet);
+		}
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			Instantiate(prefabMeteo, Vector3.zero, Quaternion.identity);
 		}
 	}
-		
-	void OnTriggerEnter2D (Collider2D c)
+
+	protected override void OnDead ()
 	{
-		// レイヤー名を取得
-		string layerName = LayerMask.LayerToName(c.gameObject.layer);
-		if( layerName == "Enemy")
-		{
-			strength--;
-			// エネミーの削除
-			Destroy(c.gameObject);
+		base.OnDead ();
 
-			if( strength == 0 )
-			{
-				EnemyBase.PlayerAlive = false;
+		gameover.SetActive (true);
+		EnemyBase.PlayerAlive = false;
 
-				//爆発
-				Explosion();
-				// 弾の削除
-				Destroy(gameObject);
-				gameover.SetActive (true);
-			}
-		}
 	}
 }
