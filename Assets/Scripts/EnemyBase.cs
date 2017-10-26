@@ -13,7 +13,7 @@ public abstract class EnemyBase : MonoBehaviour {
 	int score = 50;				// この敵が持つスコア
 	bool isDead = false;	// プレイヤーによって倒されたか
 
-	void Awake()
+	protected virtual void Awake()
 	{
 		s_list.Add (this);
 	}

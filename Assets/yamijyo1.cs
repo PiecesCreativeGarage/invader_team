@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class yamijyo1 : PlayerBase {
 
 	public GameObject gameover;
+	public LeftJoystick controller;
+
+	public Button shoot;
+	public Button meteo;
 
 	// Use this for initialization
 	void Awake() {
@@ -13,13 +18,32 @@ public class yamijyo1 : PlayerBase {
 			this.GetComponent<SpriteRenderer>().sprite = PlayerStatus.instance.sprite;
 			this.GetComponent<SpriteRenderer>().color = PlayerStatus.instance.color;
 		}
+
+		Button.ButtonClickedEvent ev = new Button.ButtonClickedEvent();
+		ev.AddListener(() => {
+			Fire(bullet);
+		});
+		shoot.onClick = ev;
+
+		ev = new Button.ButtonClickedEvent();
+		ev.AddListener(() => {
+			Instantiate(prefabMeteo, Vector3.zero, Quaternion.identity);
+		});
+		meteo.onClick = ev;
+
 	}
 
 	// Update is called once per frame
 	void Update () {
         float x = Input.GetAxisRaw("Horizontal");
         float y= Input.GetAxisRaw("Vertical");
-        Vector2 direction = new Vector2(x, y).normalized;
+		if (controller != null) {
+			Vector3 dir = controller.GetInputDirection();
+			x = dir.x;
+			y = dir.y;
+		}
+
+		Vector2 direction = new Vector2(x, y).normalized;
         GetComponent<Rigidbody2D>().velocity = direction * speed;
 
 		if (Input.GetButtonDown("Fire1")) {

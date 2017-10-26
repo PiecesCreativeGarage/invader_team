@@ -39,8 +39,10 @@ public class enemy_boss : EnemyBase {
 		Instantiate (explosion, transform.position, transform.rotation);
 	}
 
-	void Awake()
+	protected override void Awake()
 	{
+		base.Awake();
+
 		init_life = life;
 	}
 

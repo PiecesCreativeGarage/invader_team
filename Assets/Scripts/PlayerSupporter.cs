@@ -48,7 +48,7 @@ public class PlayerSupporter : PlayerBase {
 				}
 
 				if (target != null) {
-					if (target.transform.position.x < transform.position.x) {
+					if (!IsInAngle(target.gameObject)) {
 						target = null;
 					}
 				}
@@ -57,10 +57,19 @@ public class PlayerSupporter : PlayerBase {
 		}
 	}
 
+	bool IsInAngle(GameObject target) {
+		Vector3 dir = target.transform.position - transform.position;
+		return Vector3.Angle(dir, transform.right) < 60;
+	}
+
 	void SearchEnemy()
 	{
 		foreach (var e in EnemyBase.s_list) {
-			if (e.transform.position.x < transform.position.x) {
+			if (!IsInAngle(e.gameObject)) {
+				continue;
+			}
+
+			if(5 < e.transform.position.x) {
 				continue;
 			}
 

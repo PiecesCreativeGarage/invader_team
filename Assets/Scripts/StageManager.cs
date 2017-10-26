@@ -18,10 +18,13 @@ public class StageManager : MonoBehaviour {
 	public static int CurrentStage = 0;
 
 	void Awake() {
-		if (stage.Length < CurrentStage - 1) {
+		if (CurrentStage < stage.Length) {
 			StageDef s = stage[CurrentStage];
 			bg.sprite = s.bg;
 			stageNameText.text = s.stageName;
+		}
+		else {
+			UnityEngine.SceneManagement.SceneManager.LoadScene("Clear");
 		}
 	}
 

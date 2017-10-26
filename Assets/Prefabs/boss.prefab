@@ -153,7 +153,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -183,6 +183,8 @@ MonoBehaviour:
   stopline: 0
   bullet: {fileID: 1019951965734018, guid: 845bd48237cf6453f8720c5820346ddf, type: 2}
   shotvoice: {fileID: 82269031564305590}
+  transform_1: {fileID: 0}
+  transform_2: {fileID: 0}
 --- !u!212 &212176917463783540
 SpriteRenderer:
   m_ObjectHideFlags: 1
