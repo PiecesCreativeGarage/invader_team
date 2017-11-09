@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eff7b9bf06bfb4980b72b247200655da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 5
+  life: 10
   speed: 6
   explosion: {fileID: 1621794185948592, guid: 46022d8014ca24a5b893ebd306c9acc3, type: 2}
   stopline: 0

@@ -37,14 +37,16 @@ public class yamijyo1 : PlayerBase {
 	void Update () {
         float x = Input.GetAxisRaw("Horizontal");
         float y= Input.GetAxisRaw("Vertical");
-		if (controller != null) {
+		float coef = 1f;
+		if (controller != null && controller.isActiveAndEnabled) {
 			Vector3 dir = controller.GetInputDirection();
 			x = dir.x;
 			y = dir.y;
+			coef = 0.6f;
 		}
 
 		Vector2 direction = new Vector2(x, y).normalized;
-        GetComponent<Rigidbody2D>().velocity = direction * speed;
+        GetComponent<Rigidbody2D>().velocity = direction * speed * coef;
 
 		if (Input.GetButtonDown("Fire1")) {
 			Fire (bullet);
